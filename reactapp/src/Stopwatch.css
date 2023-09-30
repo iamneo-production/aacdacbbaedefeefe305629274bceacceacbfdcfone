@@ -1,0 +1,50 @@
+.stopwatch-container {
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .stopwatch-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .time-display {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .action-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .action-button.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .lap-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+  
+  .lap-item {
+    font-size: 1rem;
+    margin: 5px 0;
+  }
