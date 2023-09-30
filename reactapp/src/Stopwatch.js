@@ -1,8 +1,48 @@
-
 import React, { Component } from 'react';
 import './Stopwatch.css';
 
+
 class Stopwatch extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isRunning: false,
+      startTime: 0,
+      currentTime: 0,
+      laps: [],
+    };
+  }
+
+  startStopwatch = () => {
+    if (!this.state.isRunning) {
+      const startTime = Date.now() - this.state.currentTime;
+      this.setState({ isRunning: true, startTime });
+      this.timer = setInterval(this.updateTime, 10);
+    } else {
+      clearInterval(this.timer);
+      this.setState({ isRunning: false });
+    }
+  };
+
+  updateTime = () => {
+    const currentTime = Date.now() - this.state.startTime;
+    this.setState({ currentTime });
+  };
+
+  resetStopwatch = () => {
+    clearInterval(this.timer);
+    this.setState({
+      isRunning: false,
+      startTime: 0,
+      currentTime: 0,
+      laps: [],
+    });
+  };
+
+  addLap = () => {
+    const { laps, currentTime } = this.state;
+    this.setState({ laps: [...laps, currentTime] });
+  };
 
   render() {
     const { isRunning, currentTime, laps } = this.state;
@@ -44,7 +84,12 @@ class Stopwatch extends Component {
     );
   }
 
-  // ... Rest of the JavaScript code remains the same as in the previous response
+  formatTime = (milliseconds) => {
+    const centiseconds = String(Math.floor((milliseconds / 10) % 100)).padStart(2, '0');
+    const seconds = String(Math.floor((milliseconds / 1000) % 60)).padStart(2, '0');
+    const minutes = String(Math.floor((milliseconds / 60000) % 60)).padStart(2, '0');
+    return `${minutes}:${seconds}.${centiseconds}`;
+  };
 }
 
 export default Stopwatch;
